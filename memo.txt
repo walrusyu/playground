@@ -1,0 +1,1 @@
+.\generate-groups.sh all github.com/ywf/cloud/k8s/crd-controller/mdm/pkg/client github.com/ywf/cloud/k8s/crd-controller/mdm/pkg/apis mdm:v1 --go-header
