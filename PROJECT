@@ -7,4 +7,14 @@ layout:
 - go.kubebuilder.io/v4
 projectName: playground
 repo: github.com/walrusyu/playground
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: walrusyu.io
+  group: webapp
+  kind: Guestbook
+  path: github.com/walrusyu/playground/api/v1
+  version: v1
 version: "3"
