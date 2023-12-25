@@ -22,14 +22,17 @@ optional: make manifests
 // 4. generates code, like runtime.Object/DeepCopy implementations.
 make generate
 
+// 5. change rbac if needed
+just modify the function named Reconcile in xxxx_controller.go
+remove or add "//+kubebuilder:rbac:groups=core,resources=events,verbs=create;patch" uppon the Reconcile function
 
 
 
 
 
-make docker-build docker-push IMG=walrusyu/guestbook:v1
+make docker-build docker-push IMG=walrusyu/playground:v1
 
-make deploy IMG=walrusyu/guestbook:v1
+make deploy IMG=walrusyu/playground:v1
 
 
 
