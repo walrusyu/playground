@@ -38,6 +38,10 @@ type MemcachedSpec struct {
 
 	// Port defines the port that will be used to init the container with the image
 	ContainerPort int32 `json:"containerPort,omitempty"`
+
+	// CacheName defines the name of Memcached instances
+	// kubebuilder:validation:required
+	CacheName string `json:"cacheName"`
 }
 
 // MemcachedStatus defines the observed state of Memcached
@@ -62,8 +66,9 @@ type Memcached struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   MemcachedSpec   `json:"spec,omitempty"`
-	Status MemcachedStatus `json:"status,omitempty"`
+	Spec      MemcachedSpec   `json:"spec,omitempty"`
+	Status    MemcachedStatus `json:"status,omitempty"`
+	CacheType string          `json:"cacheType,omitempty"`
 }
 
 //+kubebuilder:object:root=true

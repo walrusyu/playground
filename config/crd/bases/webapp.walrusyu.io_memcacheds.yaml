@@ -24,6 +24,8 @@ spec:
               of an object. Servers should convert recognized schemas to the latest
               internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
             type: string
+          cacheType:
+            type: string
           kind:
             description: 'Kind is a string value representing the REST resource this
               object represents. Servers may infer this from the endpoint the client
@@ -34,6 +36,9 @@ spec:
           spec:
             description: MemcachedSpec defines the desired state of Memcached
             properties:
+              cacheName:
+                description: CacheName defines the name of Memcached instances kubebuilder:validation:required
+                type: string
               containerPort:
                 description: Port defines the port that will be used to init the container
                   with the image
@@ -47,6 +52,8 @@ spec:
                 maximum: 3
                 minimum: 1
                 type: integer
+            required:
+            - cacheName
             type: object
           status:
             description: MemcachedStatus defines the observed state of Memcached

@@ -8,13 +8,17 @@ kubebuilder init --domain walrusyu.io --repo github.com/walrusyu/playground
 // cmd\main.go                           add new controller
 // config\manager\manager.yaml           define controller-manager
 // config\rbac\role.yaml                 define clusterrole -> rule -> apigroup
+
 kubebuilder create api --group webapp --version v1 --kind Guestbook
 
 kubebuilder create api --group webapp --version v1alpha1 --kind Memcached --image=memcached:1.4.36-alpine \
 --image-container-command="memcached,-m=64,-o,modern,-v" --image-container-port="11211" --run-as-user="1001" \
 --plugins="deploy-image/v1-alpha" --make=false
 
-// 3.
+// 3. update type if needed
+optional: make generate
+
+
 
 
 
