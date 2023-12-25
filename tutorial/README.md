@@ -29,20 +29,8 @@ referenced files:
 | config\manager\manager.yaml   | define controller-manager              |
 | config\rbac\role.yaml         | define clusterrole -> rule -> apigroup |
 
-```sh
-kubebuilder create api --group webapp --version v1 --kind Guestbook
-```
-
 ```shell
-kubebuilder create api --group webapp --version v1alpha1 --kind Memcached --image=memcached:1.4.36-alpine \
---image-container-command="memcached,-m=64,-o,modern,-v" --image-container-port="11211" --run-as-user="1001" \
---plugins="deploy-image/v1-alpha" --make=false
-```
-
-```shell
-kubebuilder create api --group webapp --version v1alpha1 --kind Memcached --image=memcached:1.4.36-alpine \
---image-container-command="memcached,-m=64,-o,modern,-v" --image-container-port="11211" --run-as-user="1001" \
---plugins="deploy-image/v1-alpha" --make=false
+kubebuilder create api --group batch --version v1 --kind CronJob
 ```
 
 ####  3. update type (if needed)
