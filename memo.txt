@@ -16,9 +16,11 @@ kubebuilder create api --group webapp --version v1alpha1 --kind Memcached --imag
 --plugins="deploy-image/v1-alpha" --make=false
 
 // 3. update type if needed
-optional: make generate
+// generates Kubernetes object YAML, like CustomResourceDefinitions, WebhookConfigurations, and RBAC roles.
+optional: make manifests
 
-
+// 4. generates code, like runtime.Object/DeepCopy implementations.
+make generate
 
 
 
