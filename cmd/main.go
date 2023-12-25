@@ -33,6 +33,7 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
 	webappv1 "github.com/walrusyu/playground/api/v1"
+	webappv1alpha1 "github.com/walrusyu/playground/api/v1alpha1"
 	"github.com/walrusyu/playground/internal/controller"
 	//+kubebuilder:scaffold:imports
 )
@@ -46,6 +47,7 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(webappv1.AddToScheme(scheme))
+	utilruntime.Must(webappv1alpha1.AddToScheme(scheme))
 	//+kubebuilder:scaffold:scheme
 }
 
@@ -94,6 +96,14 @@ func main() {
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Guestbook")
+		os.Exit(1)
+	}
+	if err = (&controller.MemcachedReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+		Recorder: mgr.GetEventRecorderFor("memcached-controller"),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to create controller", "controller", "Memcached")
 		os.Exit(1)
 	}
 	//+kubebuilder:scaffold:builder
