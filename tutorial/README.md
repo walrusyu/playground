@@ -48,6 +48,11 @@ make generate
 just modify the function named Reconcile in xxxx_controller.go  
 remove or add "//+kubebuilder:rbac:groups=core,resources=events,verbs=create;patch" uppon the Reconcile function
 
+#### 6. create webhooks
+```shell
+kubebuilder create webhook --group batch --version v1 --kind CronJob --defaulting --programmatic-validation
+```
+
 ### To Deploy on the cluster
 **Build and push your image to the location specified by `IMG`:**
 
